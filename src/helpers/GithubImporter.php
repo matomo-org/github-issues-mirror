@@ -35,13 +35,13 @@ class GithubImporter {
         }
     }
 
-    public static function buildClient($oauthToken)
+    public static function buildClient($clientId, $clientSecret)
     {
         $httpClient = new CachedGithubClient(array('cache_dir' => realpath('../tmp/github_api_cache')));
         $client     = new Client($httpClient);
 
-        if ($oauthToken) {
-            $client->authenticate($oauthToken, null, Client::AUTH_HTTP_TOKEN);
+        if (!empty($clientId) && !empty($clientSecret)) {
+            $client->authenticate($clientId, $clientSecret, Client::AUTH_URL_CLIENT_ID);
         }
 
         return $client;

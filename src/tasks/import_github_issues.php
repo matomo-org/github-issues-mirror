@@ -13,7 +13,7 @@
 require '../vendor/autoload.php';
 require '../config/config.php';
 
-$client   = helpers\GithubImporter::buildClient(GITHUB_OAUTH_TOKEN);
+$client   = helpers\GithubImporter::buildClient(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET);
 $importer = new helpers\GithubImporter($client);
 
 try {

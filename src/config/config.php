@@ -17,10 +17,12 @@ define('PROJECT_NAME', 'Piwik');
 define('PROJECT_EMAIL', 'developer@piwik.org');
 
 /**
- * See https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization for how to create a new token.
- * If you do not provide an OAuth2 Token you will be limited to 60 requests per hour instead of 5000.
+ * You can create a new application on the application settings page: https://github.com/settings/applications/new .
+ * After adding an application the client id and secret will be displayed.
+ * If you do not provide a client id and secret you will be limited to 60 requests per hour instead of 5000.
  */
-define('GITHUB_OAUTH_TOKEN', '');
+define('GITHUB_CLIENT_ID', '');
+define('GITHUB_CLIENT_SECRET', '');
 define('GITHUB_ORGANIZATION', 'piwik');
 define('GITHUB_REPOSITORY', 'piwik');
 define('NUMBER_OF_ISSUES_PER_PAGE', 100);
