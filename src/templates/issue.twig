@@ -1,0 +1,54 @@
+{% extends "layout.twig" %}
+{% import "macros.twig" as macro %}
+
+{% block title %}
+    <title>{{ projectName }} Issue {{number}} - {{ title }}</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h1>{{ title }} <small>#{{number}}</small></h1>
+            {% if labels and labels|length %}
+                {% for label in labels %}
+                    <span class="label label-default">{{ label.name }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ macro.username(user) }} opened this issue on {{ created_at|date }}</div>
+            <div class="panel-body">
+                {{ body|markdown|raw }}
+            </div>
+        </div>
+
+        {% if comments|length %}
+            {% for comment in comments %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ macro.username(comment.user) }} commented on {{ comment.created_at|date }}</div>
+                    <div class="panel-body">
+                        {{ comment.body|markdown|raw }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if state == 'closed' %}
+            <div class="well well-sm">
+                This issue was closed on {{ closed_at|date }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="container" style="margin-bottom: 20px;">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/">Home</a> |
+                <a onclick="window.history.back();" style="cursor: pointer;">Back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

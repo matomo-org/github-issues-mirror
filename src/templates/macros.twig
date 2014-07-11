@@ -1,0 +1,3 @@
+{% macro username(user) %}
+    <a href="{{ user.html_url }}" target="_blank">@{{ user.login }}</a>
+{% endmacro %}

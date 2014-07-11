@@ -1,0 +1,17 @@
+{
+    "require": {
+        "slim/slim": "2.*",
+        "twig/twig": "1.15.*",
+        "slim/views": "0.1.*",
+        "slim/extras": "2.*",
+        "knplabs/github-api": "1.2.*",
+        "michelf/php-markdown": "1.4.*",
+        "ezyang/htmlpurifier": "4.6.*",
+        "phpmailer/phpmailer": "5.2.*"
+    },
+    "autoload":{
+        "psr-0":{
+            "": ""
+        }
+    }
+}
