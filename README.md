@@ -10,10 +10,10 @@ Try it, it's easy to setup! No database needed
 
 ## Setup
 
-`git clone git@github.com:piwik/github-issues-mirror.git`
-`cd src`
-`curl -s https://getcomposer.org/installer | php`
-`php composer.phar install`
+* `git clone git@github.com:piwik/github-issues-mirror.git`
+* `cd src`
+* `curl -s https://getcomposer.org/installer | php`
+* `php composer.phar install`
 
 Make sure to point your vhost to `src/public`. The `src/tmp` directory has to be writable.
 
