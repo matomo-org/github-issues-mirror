@@ -9,6 +9,7 @@
 namespace helpers;
 
 use Github\Client;
+use Github\HttpClient\CachedHttpClient;
 use Github\ResultPager;
 
 class GithubImporter {
@@ -37,7 +38,7 @@ class GithubImporter {
 
     public static function buildClient($clientId, $clientSecret)
     {
-        $httpClient = new CachedGithubClient(array('cache_dir' => realpath('../tmp/github_api_cache')));
+        $httpClient = new CachedHttpClient(array('cache_dir' => realpath('../tmp/github_api_cache')));
         $client     = new Client($httpClient);
 
         if (!empty($clientId) && !empty($clientSecret)) {
