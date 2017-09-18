@@ -8,16 +8,8 @@
 
 namespace helpers;
 
-use \Michelf\MarkdownExtra as MarkdownParser;
 
-class Markdown extends MarkdownParser {
-
-    protected function doHeaders($text)
-    {
-        // Do not transform headers, for instance because of backtraces which contain #0 #1 ...
-        // They are also not rendered by GitHub issues.
-        return $text;
-    }
+class Markdown extends \Parsedown {
 
     /**
      * Transform markdown to HTML. The HTML will be purified to prevent XSS.
@@ -25,15 +17,13 @@ class Markdown extends MarkdownParser {
      * @param  string $markdown
      * @return string
      */
-    public function transform($markdown)
-    {
-        $html = parent::transform($markdown);
+    public function text($markdown) {
+        $html = parent::text($markdown);
 
         return $this->purifyHtml($html);
     }
 
-    private function purifyHtml($html)
-    {
+    private function purifyHtml($html) {
         $config = \HTMLPurifier_Config::createDefault();
         $config->set('HTML.Doctype', 'XHTML 1.0 Transitional');
         $config->set('HTML.Allowed', 'p,strong,em,b,a[href],i,span,ul,ol,li,cite,code,pre');

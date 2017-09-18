@@ -26,7 +26,7 @@ class Twig {
     {
         return new \Twig_SimpleFilter('markdown', function ($text) {
             $parser = new Markdown();
-            return $parser->transform($text);
+            return $parser->text($text);
         });
     }
 

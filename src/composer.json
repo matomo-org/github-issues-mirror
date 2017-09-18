@@ -5,9 +5,9 @@
         "slim/views": "0.1.*",
         "slim/extras": "2.*",
         "knplabs/github-api": "1.2.*",
-        "michelf/php-markdown": "1.4.*",
-        "ezyang/htmlpurifier": "4.6.*",
-        "phpmailer/phpmailer": "5.2.*"
+        "ezyang/htmlpurifier": "^4.9",
+        "phpmailer/phpmailer": "5.2.*",
+        "erusev/parsedown": "^1.6"
     },
     "autoload":{
         "psr-0":{
