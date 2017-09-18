@@ -18,6 +18,7 @@ class Markdown extends \Parsedown {
      * @return string
      */
     public function text($markdown) {
+        $this->setBreaksEnabled(true);
         $html = parent::text($markdown);
 
         return $this->purifyHtml($html);
