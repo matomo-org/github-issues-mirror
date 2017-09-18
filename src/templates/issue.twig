@@ -8,7 +8,11 @@
 {% block content %}
     <div class="container">
         <div class="page-header">
-            <h1>{{ title }} <small>#{{number}}</small></h1>
+            <h1>{{ title }}
+                <a href="https://github.com/{{ githubOrganization }}/{{ githubRepository }}/issues/{{ number }}">
+                    <small>#{{number}}</small>
+                </a>
+            </h1>
             {% if labels and labels|length %}
                 {% for label in labels %}
                     <span class="label label-default">{{ label.name }}</span>
