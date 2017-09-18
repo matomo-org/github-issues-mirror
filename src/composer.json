@@ -6,7 +6,7 @@
         "slim/extras": "2.*",
         "knplabs/github-api": "1.2.*",
         "ezyang/htmlpurifier": "^4.9",
-        "phpmailer/phpmailer": "5.2.*",
+        "phpmailer/phpmailer": "^6.0",
         "erusev/parsedown": "^1.6"
     },
     "autoload":{
