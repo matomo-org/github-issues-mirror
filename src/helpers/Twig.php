@@ -18,8 +18,6 @@ class Twig {
     public static function registerFilter(\Twig_Environment $environment)
     {
         $environment->addFilter(static::getMarkdownFilter());
-        $environment->addFilter(static::getLinkToPageFilter());
-        $environment->addFilter(static::getLinkToIssueFilter());
     }
 
     private static function getMarkdownFilter()
@@ -28,24 +26,5 @@ class Twig {
             $parser = new Markdown();
             return $parser->text($text);
         });
-    }
-
-    private static function getLinkToPageFilter()
-    {
-        return new \Twig_SimpleFilter('pageLink', function ($page) {
-            if (1 === (int) $page) {
-                return '/';
-            }
-
-            return '/?page=' . (int) $page;
-        }, array('is_safe' => array('all')));
-    }
-
-    private static function getLinkToIssueFilter()
-    {
-        return new \Twig_SimpleFilter('issueLink', function ($number) {
-
-            return '/' . (int) $number;
-        }, array('is_safe' => array('all')));
     }
 }

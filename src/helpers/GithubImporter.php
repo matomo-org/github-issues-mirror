@@ -8,10 +8,11 @@
 
 namespace helpers;
 
+use Cache\Adapter\Filesystem\FilesystemCachePool;
 use Github\Client;
-use Github\HttpClient\CachedHttpClient;
 use Github\ResultPager;
-
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 class GithubImporter {
 
     private $client;
@@ -38,8 +39,12 @@ class GithubImporter {
 
     public static function buildClient($clientId, $clientSecret)
     {
-        $httpClient = new CachedHttpClient(array('cache_dir' => realpath('../tmp/github_api_cache')));
-        $client     = new Client($httpClient);
+        $filesystemAdapter = new Local(realpath('../tmp/github_api_cache'));
+        $filesystem = new Filesystem($filesystemAdapter);
+
+        $pool = new FilesystemCachePool($filesystem);
+        $client = new Client();
+        $client->addCache($pool);
 
         if (!empty($clientId) && !empty($clientSecret)) {
             $client->authenticate($clientId, $clientSecret, Client::AUTH_URL_CLIENT_ID);

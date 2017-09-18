@@ -21,7 +21,7 @@ $app->get(
 
     $details = $issue->getIssue($number);
     return $this->view->render($response, 'issue.twig', $details);
-});
+})->setName("issue");
 
 $app->get('/', function ($request, $response, $args) {
     /** @var \Slim\Http\Request $request */
@@ -37,4 +37,4 @@ $app->get('/', function ($request, $response, $args) {
     $details = $page->getPage($pageNumber);
 
     return $this->view->render($response, 'page.twig', $details);
-});
+})->setName("page");
