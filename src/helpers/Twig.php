@@ -12,7 +12,7 @@ class Twig {
 
     public static function setDateFormat(\Twig_Environment $environment)
     {
-        $environment->getExtension('core')->setDateFormat('F jS Y');
+        $environment->getExtension("Twig_Extension_Core")->setDateFormat('F jS Y');
     }
 
     public static function registerFilter(\Twig_Environment $environment)

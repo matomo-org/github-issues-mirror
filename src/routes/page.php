@@ -6,42 +6,35 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
-function initView($app)
-{
-    $app->view->setData('projectName', PROJECT_NAME);
-    $app->view->setData('githubOrganization', GITHUB_ORGANIZATION);
-    $app->view->setData('githubRepository', GITHUB_REPOSITORY);
-}
 
-initView($app);
+$app->get(
+    '/{number:[0-9]+}', function ($request, $response, $args) {
 
-$app->get('/:number', function ($number) use ($app) {
-    $number = (int) $number;
+    $number = (int)$args["number"];
 
     $issue = new helpers\Issue();
 
     if (!$issue->exists($number)) {
-        $app->pass();
-        return;
+        /** @var \Slim\Http\Response $response */
+        return $response->withStatus(404);
     }
 
     $details = $issue->getIssue($number);
+    return $this->view->render($response, 'issue.twig', $details);
+});
 
-    $app->render('issue.twig', $details);
-
-})->conditions(array('number' => '\d+'));
-
-$app->get('/', function() use ($app) {
-    $pageNumber = (int) $app->request()->get('page', 1);
+$app->get('/', function ($request, $response, $args) {
+    /** @var \Slim\Http\Request $request */
+    $pageNumber = (int)$request->getQueryParam('page', 1);
 
     $page = new helpers\Page();
 
     if (!$page->exists($pageNumber)) {
-        $app->pass();
-        return;
+        /** @var \Slim\Http\Response $response */
+        return $response->withStatus(404);
     }
 
     $details = $page->getPage($pageNumber);
 
-    $app->render('page.twig', $details);
+    return $this->view->render($response, 'page.twig', $details);
 });

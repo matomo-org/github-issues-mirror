@@ -10,26 +10,39 @@ require '../vendor/autoload.php';
 require '../config/config.php';
 
 date_default_timezone_set('UTC');
+$config = [
+    'settings' => [
+        'displayErrorDetails' => true,
+    ],
+];
 
-$app = new \Slim\Slim(array(
-    'view'  => new \Slim\Views\Twig(),
-    'debug' => DEBUG_ENABLED
-));
+$app = new \Slim\App($config);
 
-/** @var \Slim\Views\Twig $view */
-$view = $app->view();
-$view->parserOptions = array(
-    'charset'    => 'utf-8',
-    'debug'      => DEBUG_ENABLED,
-    'cache'      => realpath('../tmp/templates_cache'),
-    'autoescape' => true
-);
-$view->parserExtensions = array(
-    new \Slim\Views\TwigExtension()
-);
-$view->setTemplatesDirectory(realpath('../templates'));
-helpers\Twig::setDateFormat($view->getEnvironment());
-helpers\Twig::registerFilter($view->getEnvironment());
+// Get container
+$container = $app->getContainer();
+
+// Register component on container
+$container['view'] = function ($container) {
+    $view = new \Slim\Views\Twig(realpath("../templates/"), [
+        'cache' => realpath('../tmp/templates_cache'),
+        'debug' => DEBUG_ENABLED,
+    ]);
+
+    // Instantiate and add Slim specific extension
+    $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
+    $view->addExtension(new Slim\Views\TwigExtension($container['router'], $basePath));
+    $twig = $view->getEnvironment();
+    helpers\Twig::setDateFormat($twig);
+    helpers\Twig::registerFilter($twig);
+
+
+
+    $view->getEnvironment()->addGlobal('projectName', PROJECT_NAME);
+    $view->getEnvironment()->addGlobal('githubOrganization', GITHUB_ORGANIZATION);
+    $view->getEnvironment()->addGlobal('githubRepository', GITHUB_REPOSITORY);
+
+    return $view;
+};
 
 require '../routes/page.php';
 
