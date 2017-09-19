@@ -2,11 +2,11 @@
 
 {% block head %}
     {% if currentPage > 1 %}
-        <link rel="prev" href="{{ path_for('page', [] , { 'page': previousPage }) }}" />
+        <link rel="prev" href="{{ path_for('page', [] , { 'page': previousPage }) }}"/>
     {% endif %}
 
     {% if currentPage != numPages %}
-        <link rel="next" href="{{ path_for('page', [], { 'page': nextPage }) }}" />
+        <link rel="next" href="{{ path_for('page', [], { 'page': nextPage }) }}"/>
     {% endif %}
 {% endblock %}
 
@@ -14,48 +14,69 @@
     {% if currentPage == 1 %}
         <div class="container">
             <div class="page-header">
-                <h1>Read-only mirror of all <a href="https://github.com/{{ githubOrganization|e('url') }}/{{ githubRepository|e('url') }}/issues" target="_blank">{{ projectName }} issues</a>.</h1>
+                <h1>Read-only mirror of all <a
+                            href="https://github.com/{{ githubOrganization|e('url') }}/{{ githubRepository|e('url') }}/issues"
+                            target="_blank">{{ projectName }} issues</a>.</h1>
             </div>
         </div>
     {% else %}
         <div class="container">
             <div class="page-header">
-                <h1>{{ projectName }} Issues <small>Page {{currentPage}}</small></h1>
+                <h1>{{ projectName }} Issues
+                    <small>Page {{ currentPage }}</small>
+                </h1>
             </div>
         </div>
     {% endif %}
+    <hr>
 
     <div class="container">
 
-        {% for issue in issues %}
-            <div class="list-group">
-                <a href="{{ path_for('issue', { 'number': issue.number }) }}" class="list-group-item">
-                    <h4 class="list-group-item-heading">{{ issue.title }} <small>#{{ issue.number }}</small></h4>
-                    <p class="list-group-item-text">
-                        <small>
-                            opened by @{{ issue.user.login }} on {{ issue.created_at|date }}
-                            {% if issue.state == 'closed' %}
-                                <span class="label label-default">closed</span>
-                            {% endif %}
-                        </small>
-                    </p>
-                </a>
-            </div>
-        {% endfor %}
-
+        <div class="card-deck"><div class="row">
+            {% for issue in issues %}
+                <div class="col-md-3">
+                    <a href="{{ path_for('issue', { 'number': issue.number }) }}" class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ issue.title }}
+                                <small>#{{ issue.number }}</small>
+                            </h4>
+                            <small>
+                                opened by @{{ issue.user.login }} on {{ issue.created_at|date }}
+                                {% if issue.state == 'closed' %}
+                                    <span class="badge badge-secondary">closed</span>
+                                {% endif %}
+                            </small>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div></div>
         <ul class="pagination">
             {% if currentPage > 1 %}
-                <li><a href="{{ path_for('page', [], { 'page': previousPage }) }}" title="Previous page">&laquo;</a></li>
+                <li class="page-item">
+                    <a href="{{ path_for('page', [], { 'page': previousPage }) }}"
+                       aria-label="Previous page" class="page-link">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
             {% endif %}
 
             {% for pageEntry in 1..numPages %}
-                <li {% if pageEntry == currentPage %}class="active"{% endif %}>
-                    <a href="{{ path_for('page', [], { 'page': pageEntry }) }}" title="Page {{ pageEntry }}">{{ pageEntry }}</a>
+                <li class="page-item {% if pageEntry == currentPage %}active{% endif %}">
+                    <a class="page-link" href="{{ path_for('page', [], { 'page': pageEntry }) }}"
+                       title="Page {{ pageEntry }}">{{ pageEntry }}</a>
                 </li>
             {% endfor %}
 
             {% if currentPage != numPages %}
-                <li><a href="{{ path_for('page', [], { 'page': nextPage }) }}" title="Next page">&raquo;</a></li>
+                <li class="page-item">
+                    <a href="{{ path_for('page', [], { 'page': nextPage }) }}"
+                       class="page-link" aria-label="Next page">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
             {% endif %}
         </ul>
 
