@@ -15,8 +15,7 @@ $app->get(
     $issue = new helpers\Issue();
 
     if (!$issue->exists($number)) {
-        /** @var \Slim\Http\Response $response */
-        return $response->withStatus(404);
+        throw new \Slim\Exception\NotFoundException($request, $response);
     }
 
     $details = $issue->getIssue($number);
@@ -30,8 +29,7 @@ $app->get('/', function ($request, $response, $args) {
     $page = new helpers\Page();
 
     if (!$page->exists($pageNumber)) {
-        /** @var \Slim\Http\Response $response */
-        return $response->withStatus(404);
+        throw new \Slim\Exception\NotFoundException($request, $response);
     }
 
     $details = $page->getPage($pageNumber);
