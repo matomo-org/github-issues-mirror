@@ -32,7 +32,7 @@
     <hr>
 
     <div class="container">
-
+        {{ macro.pagination(numPages, currentPage) }}
         <div class="card-deck"><div class="row">
             {% for issue in issues %}
                 <div class="col-md-3">
@@ -53,35 +53,7 @@
                 </div>
             {% endfor %}
         </div></div>
-        <ul class="pagination">
-            {% if currentPage > 1 %}
-                <li class="page-item">
-                    <a href="{{ path_for('page', [], { 'page': previousPage }) }}"
-                       aria-label="Previous page" class="page-link">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-            {% endif %}
-
-            {% for pageEntry in 1..numPages %}
-                <li class="page-item {% if pageEntry == currentPage %}active{% endif %}">
-                    <a class="page-link" href="{{ path_for('page', [], { 'page': pageEntry }) }}"
-                       title="Page {{ pageEntry }}">{{ pageEntry }}</a>
-                </li>
-            {% endfor %}
-
-            {% if currentPage != numPages %}
-                <li class="page-item">
-                    <a href="{{ path_for('page', [], { 'page': nextPage }) }}"
-                       class="page-link" aria-label="Next page">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            {% endif %}
-        </ul>
-
+        {{ macro.pagination(numPages, currentPage) }}
     </div>
 
 {% endblock %}

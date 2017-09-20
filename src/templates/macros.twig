@@ -13,3 +13,59 @@
         {% endfor %}
     {% endif %}
 {% endmacro %}
+
+{% macro pagination(num_pages, page) %}
+    {% import _self as m %}
+    {% set pagearray = paginationFunction(num_pages, page,5) %}
+    <!-- License of svg icons - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License) -->
+    <ul class="pagination">
+        {% if page > 1 %}
+            <li class="page-item">
+                <a rel="prev" href="{{ path_for('page', [], { 'page': page - 1 }) }}" class="page-link">
+                    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"></path>
+                    </svg>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a rel="prev" href="" class="page-link">
+                    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"></path>
+                    </svg>
+                </a>
+            </li>
+        {% endif %}
+        {% for i in pagearray %}
+            {% if i == "d" %}
+                <li class="page-item disabled">
+                    <a href="#" class=" other page-link">&hellip;</a>
+                </li>
+            {% else %}
+                {{ m.printpage(i, page) }}
+            {% endif %}
+        {% endfor %}
+        <li class="page-item">
+            {% if page < num_pages %}
+                <a rel="next" href="{{ path_for('page', [], { 'page': page + 1 }) }}" class="page-link">
+                    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"></path>
+                    </svg>
+                </a>
+            {% else %}
+                <a rel="next" href="" class="disabled page-link">
+                    <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"></path>
+                    </svg>
+                </a>
+            {% endif %}
+        </li>
+    </ul>
+{% endmacro %}
+
+{% macro printpage(i,active) %}
+    <li class="page-item {{ i == active ? "active" : "other" }}">
+        <a href="{{ path_for('page', [], { 'page': i }) }}"
+           class="page-link">{{ i }}</a>
+    </li>
+{% endmacro %}

@@ -18,6 +18,7 @@ class Twig
     public static function registerFilter(\Twig_Environment $environment) {
         $environment->addFilter(static::getMarkdownFilter());
         $environment->addFilter(static::getColorFilter());
+        $environment->addFunction(static::getPaginationFunction());
     }
 
     private static function getMarkdownFilter() {
@@ -41,6 +42,24 @@ class Twig
             $yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
             return ($yiq >= 128) ? 'black' : 'white';
         });
+    }
 
+    private static function getPaginationFunction() {
+        return new \Twig_Function('paginationFunction', function ($numPages, $page, $padding = 2) {
+            $pages = [1];
+            $i = 2;
+            while ($i <= $numPages) {
+                if ($i < ($page - $padding - 1)) {
+                    $pages[] = "d";
+                    $i = $page - $padding;
+                } elseif (($i > ($page + $padding)) && ($numPages > ($page + $padding + 2))) {
+                    $pages[] = "d";
+                    $i = $numPages;
+                }
+                $pages[] = $i;
+                $i++;
+            }
+            return $pages;
+        });
     }
 }
