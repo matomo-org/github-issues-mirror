@@ -31,9 +31,55 @@ h1 a {
 	}
 }
 
+.badge {
+	padding: 6px 10px;
+	&.text-black {
+		color: $gray-800;
+	}
+	&.text-white {
+		color: $gray-200;
+	}
+}
+
+.card {
+	margin-bottom: 2rem;
+	.avatar {
+		margin-right: 3px;
+	}
+	.card-header {
+		display: flex;
+		align-items: center;
+		a {
+			display: flex;
+			align-items: center;
+			margin-right: 3px;
+		}
+		.authorAssociation {
+			margin-left: auto;
+			margin-right: 0;
+			display: block;
+			font-size: smaller;
+			color: $gray-700;
+		}
+	}
+}
+
 blockquote { // bootstrap 3 like styling
 	padding: 10px 20px;
 	margin: 0 0 20px;
 	font-size: 17.5px;
-	border-left: 5px solid #eee;
+	border-left: 5px solid $gray-300;
+}
+
+pre > code {
+	display: block;
+	padding: 9.5px;
+	margin: 0 0 10px;
+	color: $gray-800;
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: $gray-200;
+	border: 1px solid $gray-400;
+	border-radius: $border-radius;
+	overflow-y: auto;
 }

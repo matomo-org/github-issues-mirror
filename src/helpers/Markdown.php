@@ -27,7 +27,8 @@ class Markdown extends \Parsedown {
     private function purifyHtml($html) {
         $config = \HTMLPurifier_Config::createDefault();
         $config->set('HTML.Doctype', 'XHTML 1.0 Transitional');
-        $config->set('HTML.Allowed', 'p,strong,em,b,a[href],i,span,ul,ol,li,cite,code,pre,br,blockquote');
+        $config->set('HTML.Allowed', 'p,strong,em,b,a[href],i,span,ul,ol,li,cite,code,pre,br,blockquote,img');
+        $config->set('HTML.AllowedAttributes', 'src, height, width, alt, href');
         $config->set('URI.AllowedSchemes', array('http' => true, 'https' => true, 'mailto' => true, 'ftp' => true));
         $config->set('HTML.TargetBlank', true);
 

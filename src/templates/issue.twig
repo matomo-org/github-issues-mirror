@@ -2,7 +2,7 @@
 {% import "macros.twig" as macro %}
 
 {% block title %}
-    <title>{{ projectName }} Issue {{number}} - {{ title }}</title>
+    <title>{{ projectName }} Issue {{ number }} - {{ title }}</title>
 {% endblock %}
 
 {% block content %}
@@ -10,30 +10,45 @@
         <div class="page-header">
             <h1>{{ title }}
                 <a href="https://github.com/{{ githubOrganization }}/{{ githubRepository }}/issues/{{ number }}">
-                    <small>#{{number}}</small>
+                    <small>#{{ number }}</small>
                 </a>
             </h1>
             {% if labels and labels|length %}
                 {% for label in labels %}
-                    <span class="label label-default">{{ label.name }}</span>
+                    <span class="badge text-{{ label.color | textcolor }}"
+                          style="background: {{ '#' ~ label.color }}">{{ label.name }}</span>
                 {% endfor %}
+            {% endif %}
+
+            {% if milestone %}
+                <span class="badge badge-secondary" title="{{ milestone.description }}">{{ milestone.title }}</span>
             {% endif %}
         </div>
     </div>
-
+    <hr>
     <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">{{ macro.username(user) }} opened this issue on {{ created_at|date }}</div>
-            <div class="panel-body">
+        <div class="card">
+            <div class="card-header">
+                {{ macro.user(user) }} opened this issue on {{ created_at|date }}
+                {% if author_association != "NONE" %}
+                    <span class="authorAssociation">{{ author_association | capitalize }}</span>
+                {% endif %}
+            </div>
+            <div class="card-body">
                 {{ body|markdown|raw }}
             </div>
         </div>
 
         {% if comments|length %}
             {% for comment in comments %}
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{ macro.username(comment.user) }} commented on {{ comment.created_at|date }}</div>
-                    <div class="panel-body">
+                <div class="card">
+                    <div class="card-header">{{ macro.user(comment.user) }} commented
+                        on {{ comment.created_at|date }}
+                        {% if comment.author_association != "NONE" %}
+                            <span class="authorAssociation">{{ comment.author_association | capitalize }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
                         {{ comment.body|markdown|raw }}
                     </div>
                 </div>
@@ -41,8 +56,10 @@
         {% endif %}
 
         {% if state == 'closed' %}
-            <div class="well well-sm">
-                This issue was closed on {{ closed_at|date }}
+            <div class="card">
+                <div class="card-header">
+                    This issue was closed on {{ closed_at|date }}
+                </div>
             </div>
         {% endif %}
     </div>
@@ -51,7 +68,7 @@
         <div class="row">
             <div class="col-md-6">
                 <a href="/">Home</a> |
-                <a onclick="window.history.back();" style="cursor: pointer;">Back</a>
+                <a href="javascript:window.history.back();">Back</a>
             </div>
         </div>
     </div>
