@@ -1,4 +1,5 @@
 {% extends "layout.twig" %}
+{% import "macros.twig" as macro %}
 
 {% block head %}
     {% if currentPage > 1 %}
@@ -45,6 +46,7 @@
                                 {% if issue.state == 'closed' %}
                                     <span class="badge badge-secondary">closed</span>
                                 {% endif %}
+                                {{ macro.labels(issue.labels) }}
                             </small>
                         </div>
                     </a>

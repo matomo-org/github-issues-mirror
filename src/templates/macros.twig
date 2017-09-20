@@ -4,3 +4,12 @@
              height="44">@{{ user.login }}
     </a>
 {% endmacro %}
+
+{% macro labels(labels) %}
+    {% if labels and labels|length %}
+        {% for label in labels %}
+            <span class="badge text-{{ label.color | textcolor }}"
+                  style="background: {{ '#' ~ label.color }}">{{ label.name }}</span>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}

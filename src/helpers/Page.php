@@ -85,6 +85,7 @@ class Page {
                     'login' => $issue['user']['login']
                 ),
                 'created_at' => $issue['created_at'],
+                'labels' => $issue['labels']
             );
         }
 

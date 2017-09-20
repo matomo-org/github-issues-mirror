@@ -9,16 +9,11 @@
     <div class="container">
         <div class="page-header">
             <h1>{{ title }}
-                <a href="https://github.com/{{ githubOrganization }}/{{ githubRepository }}/issues/{{ number }}">
+                <a href="{{ html_url }}">
                     <small>#{{ number }}</small>
                 </a>
             </h1>
-            {% if labels and labels|length %}
-                {% for label in labels %}
-                    <span class="badge text-{{ label.color | textcolor }}"
-                          style="background: {{ '#' ~ label.color }}">{{ label.name }}</span>
-                {% endfor %}
-            {% endif %}
+            {{ macro.labels(labels) }}
 
             {% if milestone %}
                 <span class="badge badge-secondary" title="{{ milestone.description }}">{{ milestone.title }}</span>
