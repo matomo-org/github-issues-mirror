@@ -2,7 +2,7 @@
 {% import "macros.twig" as macro %}
 
 {% block title %}
-    <title>{{ projectName }} Issue {{ number }} - {{ title }}</title>
+    <title>{{ projectName }} {{ pull_request ? "Pull Request" : "Issue" }} #{{ number }} - {{ title }}</title>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +24,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                {{ macro.user(user) }} opened this issue on {{ created_at|date }}
+                {{ macro.user(user) }} opened this {{ pull_request ? "Pull Request" : "Issue" }} on {{ created_at|date }}
                 {% if author_association != "NONE" %}
                     <span class="authorAssociation">{{ author_association | capitalize }}</span>
                 {% endif %}
@@ -53,7 +53,7 @@
         {% if state == 'closed' %}
             <div class="card">
                 <div class="card-header">
-                    This issue was closed on {{ closed_at|date }}
+                    This {{ pull_request ? "Pull Request" : "Issue" }} was closed on {{ closed_at|date }}
                 </div>
             </div>
         {% endif %}

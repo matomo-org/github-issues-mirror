@@ -1,6 +1,6 @@
 {% macro user(user) %}
     <a href="{{ user.html_url }}" target="_blank">
-        <img class="avatar" src="{{ user.avatar_url }}&s=44" role="presentation" aria-hidden="true" width="44"
+        <img class="avatar" src="{{ user.avatar_url }}&amp;s=44" role="presentation" aria-hidden="true" width="44"
              height="44">@{{ user.login }}
     </a>
 {% endmacro %}

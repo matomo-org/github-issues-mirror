@@ -19,11 +19,17 @@ class Markdown extends \Parsedown
      * @return string
      */
     public function text($markdown) {
+        $markdown = $this->parseMentions($markdown);
         $this->setBreaksEnabled(true);
         $html = parent::text($markdown);
 
         $html = $this->removeUnsafeFileExtensions($html);
         return $this->purifyHtml($html);
+    }
+
+    private function parseMentions($markdown) {
+        $regex = '/\@(\w+)/';
+        return preg_replace($regex, "<a class='mention' href='https://github.com/$1'>$0</a>", $markdown);
     }
 
     /**
@@ -42,7 +48,7 @@ class Markdown extends \Parsedown
         $config = \HTMLPurifier_Config::createDefault();
         $config->set('HTML.Doctype', 'XHTML 1.0 Transitional');
         $config->set('HTML.Allowed', 'p,strong,em,b,a[href],i,span,ul,ol,li,cite,code,pre,br,blockquote,img');
-        $config->set('HTML.AllowedAttributes', 'src, height, width, alt, href');
+        $config->set('HTML.AllowedAttributes', 'src, height, width, alt, href, class');
         $config->set('URI.AllowedSchemes', array('http' => true, 'https' => true, 'mailto' => true, 'ftp' => true));
         $config->set('HTML.TargetBlank', true);
 
