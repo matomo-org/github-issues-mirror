@@ -9,7 +9,8 @@
 namespace helpers;
 
 
-class Markdown extends \Parsedown {
+class Markdown extends \Parsedown
+{
 
     /**
      * Transform markdown to HTML. The HTML will be purified to prevent XSS.
@@ -21,7 +22,20 @@ class Markdown extends \Parsedown {
         $this->setBreaksEnabled(true);
         $html = parent::text($markdown);
 
+        $html = $this->removeUnsafeFileExtensions($html);
         return $this->purifyHtml($html);
+    }
+
+    /**
+     * <a href="http://issues.piwik.org/attachments/1199/swelen_dateslider.swf">swelen_dateslider.swf</a>
+     * to
+     * <a href="http://issues.piwik.org/">swelen_dateslider.swf</a>
+     * @param $html
+     * @return string html
+     */
+    private function removeUnsafeFileExtensions($html) {
+        $regex = '/attachments\/(.*?)\.(' . implode("|", FORBIDDEN_EXTENSIONS) . ')/';
+        return preg_replace($regex, "", $html);
     }
 
     private function purifyHtml($html) {

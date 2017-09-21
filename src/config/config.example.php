@@ -32,3 +32,9 @@ define('NUMBER_OF_ISSUES_PER_PAGE', 100);
  * error messages will be displayed if enabled.
  */
 define('DEBUG_ENABLED', false);
+
+/**
+ * Set list of file extentions that should be disallowed in links
+ * see https://github.com/piwik/github-issues-mirror/issues/5
+ */
+define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'htm']);
