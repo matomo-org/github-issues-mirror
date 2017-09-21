@@ -38,3 +38,9 @@ define('DEBUG_ENABLED', false);
  * see https://github.com/piwik/github-issues-mirror/issues/5
  */
 define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'htm']);
+
+/**
+ * If you want to enable piwik tracking enter the URL to your piwik instance and the ID of the website here
+ */
+define('PIWIK_URL', false);
+define('PIWIK_ID', false);
