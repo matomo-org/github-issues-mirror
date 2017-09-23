@@ -13,10 +13,21 @@
 require '../vendor/autoload.php';
 require '../config/config.php';
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
+$logger = new Logger('import_log');
+$logger->pushHandler(new StreamHandler(__DIR__ . '/../tmp/import.log', Logger::DEBUG));
+if (DEBUG_ENABLED) {
+    $logger->pushHandler(new \Monolog\Handler\ErrorLogHandler());
+}
+
+$logger->info("authenticating");
 $client   = helpers\GithubImporter::buildClient(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET);
-$importer = new helpers\GithubImporter($client);
+$importer = new helpers\GithubImporter($client, $logger);
 
 try {
+    $logger->info("starting import");
     $importer->import(GITHUB_ORGANIZATION, GITHUB_REPOSITORY, NUMBER_OF_ISSUES_PER_PAGE);
 } catch (Exception $e) {
     helpers\Mail::sendEmail('Import error', $e->getMessage(), PROJECT_EMAIL, PROJECT_EMAIL);
