@@ -58,7 +58,7 @@ class GithubImporter {
         $params = array(
             $organization,
             $repository,
-            array('filter' => 'all', 'state' => 'all', 'direction' => 'asc', 'sort' => 'created')
+            array('filter' => 'all', 'state' => 'all', 'direction' => 'desc', 'sort' => 'updated')
         );
 
         $paginator = new ResultPager($this->client);
