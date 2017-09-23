@@ -5,6 +5,7 @@ $grid-gutter-width: 10px;
 .card-deck {
 	.row {
 		align-items: stretch;
+		width: 100%;
 		> div {
 			display: flex;
 			margin-bottom: 2*$grid-gutter-width;
@@ -33,6 +34,7 @@ h1 a {
 
 .badge {
 	padding: 6px 10px;
+	white-space: normal;
 	&.text-black {
 		color: $gray-800;
 	}
@@ -42,7 +44,7 @@ h1 a {
 }
 
 .card {
-	margin-bottom: 2rem;
+	margin-bottom: 0;
 	.avatar {
 		margin-right: 3px;
 	}
@@ -66,7 +68,7 @@ h1 a {
 
 .pagination {
 	svg {
-		height: 18px;
+		height: 15px;
 	}
 }
 
