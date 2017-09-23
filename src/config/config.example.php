@@ -34,10 +34,10 @@ define('NUMBER_OF_ISSUES_PER_PAGE', 100);
 define('DEBUG_ENABLED', false);
 
 /**
- * Set list of file extentions that should be disallowed in links
+ * Set list of file extensions that should be disallowed in links
  * see https://github.com/piwik/github-issues-mirror/issues/5
  */
-define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'htm', 'html']);
+define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'html', 'htm']);
 
 /**
  * If you want to enable piwik tracking enter the URL to your piwik instance and the ID of the website here
