@@ -37,7 +37,7 @@ define('DEBUG_ENABLED', false);
  * Set list of file extentions that should be disallowed in links
  * see https://github.com/piwik/github-issues-mirror/issues/5
  */
-define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'htm']);
+define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'htm', 'html']);
 
 /**
  * If you want to enable piwik tracking enter the URL to your piwik instance and the ID of the website here
