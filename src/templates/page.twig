@@ -36,7 +36,7 @@
         <div class="card-deck"><div class="row">
             {% for issue in issues %}
                 <div class="col-lg-3 col-md-4">
-                    <a href="{{ path_for('issue', { 'number': issue.number }) }}" class="card">
+                    <a href="{{ path_for('issue', { 'number': issue.number }) }}" class="card overviewCard">
                         <div class="card-body">
                             <h4 class="card-title">{{ issue.title }}
                                 <small>#{{ issue.number }}</small>

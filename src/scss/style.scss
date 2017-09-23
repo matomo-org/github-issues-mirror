@@ -44,7 +44,10 @@ h1 a {
 }
 
 .card {
-	margin-bottom: 0;
+	margin-bottom: 2rem;
+	&.overviewCard {
+		margin-bottom: 0;
+	}
 	.avatar {
 		margin-right: 3px;
 	}
@@ -69,6 +72,7 @@ h1 a {
 .pagination {
 	svg {
 		height: 15px;
+		width: 15px;
 	}
 }
 
