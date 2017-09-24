@@ -14,8 +14,11 @@ Try it, it's easy to setup! No database needed
 * `cd github-issues-mirror/src`
 * `curl -s https://getcomposer.org/installer | php`
 * `php composer.phar install`
+* `npm install`
+* `npm run compileCSS`
+* `cp config/config.example.php config/config.php`
 
-Make sure to point your vhost to `src/public`. The `src/tmp` directory has to be writable.
+Make sure to point your vhost to `src/public`. The `src/tmp` and the `src/data` directories have to be writable.
 
 ### Import issues from GitHub
 
@@ -25,7 +28,7 @@ You may want to setup a cronjob to import the issues regularly. The first time y
 
 ## Configuration
 
-See [src/config/config.php](src/config/config.php)
+See [src/config/config.php](src/config/config.example.php)
 
 ## Data structure
 

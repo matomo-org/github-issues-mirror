@@ -7,3 +7,6 @@ src/tmp/github_api_cache/*
 !src/tmp/github_api_cache/.gitkeep
 src/vendor
 src/composer.phar
+src/config/config.php
+src/node_modules/
+src/public/css/style.*

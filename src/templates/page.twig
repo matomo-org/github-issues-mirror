@@ -1,12 +1,13 @@
 {% extends "layout.twig" %}
+{% import "macros.twig" as macro %}
 
 {% block head %}
     {% if currentPage > 1 %}
-        <link rel="prev" href="{{ previousPage|pageLink }}" />
+        <link rel="prev" href="{{ path_for('page', [] , { 'page': previousPage }) }}"/>
     {% endif %}
 
     {% if currentPage != numPages %}
-        <link rel="next" href="{{ nextPage|pageLink }}" />
+        <link rel="next" href="{{ path_for('page', [], { 'page': nextPage }) }}"/>
     {% endif %}
 {% endblock %}
 
@@ -14,51 +15,45 @@
     {% if currentPage == 1 %}
         <div class="container">
             <div class="page-header">
-                <h1>Read-only mirror of all <a href="http://github.com/{{ githubOrganization|e('url') }}/{{ githubRepository|e('url') }}/issues" target="_blank">{{ projectName }} issues</a>.</h1>
+                <h1>Read-only mirror of all <a
+                            href="https://github.com/{{ githubOrganization|e('url') }}/{{ githubRepository|e('url') }}/issues"
+                            target="_blank">{{ projectName }} issues</a>.</h1>
             </div>
         </div>
     {% else %}
         <div class="container">
             <div class="page-header">
-                <h1>{{ projectName }} Issues <small>Page {{currentPage}}</small></h1>
+                <h1>{{ projectName }} Issues
+                    <small>Page {{ currentPage }}</small>
+                </h1>
             </div>
         </div>
     {% endif %}
+    <hr>
 
     <div class="container">
-
-        {% for issue in issues %}
-            <div class="list-group">
-                <a href="{{ issue.number|issueLink }}" class="list-group-item">
-                    <h4 class="list-group-item-heading">{{ issue.title }} <small>#{{ issue.number }}</small></h4>
-                    <p class="list-group-item-text">
-                        <small>
-                            opened by @{{ issue.user.login }} on {{ issue.created_at|date }}
-                            {% if issue.state == 'closed' %}
-                                <span class="label label-default">closed</span>
-                            {% endif %}
-                        </small>
-                    </p>
-                </a>
-            </div>
-        {% endfor %}
-
-        <ul class="pagination">
-            {% if currentPage > 1 %}
-                <li><a href="{{ previousPage|pageLink }}" title="Previous page">&laquo;</a></li>
-            {% endif %}
-
-            {% for pageEntry in 1..numPages %}
-                <li {% if pageEntry == currentPage %}class="active"{% endif %}>
-                    <a href="{{ pageEntry|pageLink }}" title="Page {{ pageEntry }}">{{ pageEntry }}</a>
-                </li>
+        {{ macro.pagination(numPages, currentPage) }}
+        <div class="card-deck"><div class="row">
+            {% for issue in issues %}
+                <div class="col-lg-3 col-md-4">
+                    <a href="{{ path_for('issue', { 'number': issue.number }) }}" class="card overviewCard">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ issue.title }}
+                                <small>#{{ issue.number }}</small>
+                            </h4>
+                            <small>
+                                opened by @{{ issue.user.login }} on {{ issue.created_at|date }}
+                                {% if issue.state == 'closed' %}
+                                    <span class="badge badge-secondary">closed</span>
+                                {% endif %}
+                                {{ macro.labels(issue.labels) }}
+                            </small>
+                        </div>
+                    </a>
+                </div>
             {% endfor %}
-
-            {% if currentPage != numPages %}
-                <li><a href="{{ nextPage|pageLink }}" title="Next page">&raquo;</a></li>
-            {% endif %}
-        </ul>
-
+        </div></div>
+        {{ macro.pagination(numPages, currentPage) }}
     </div>
 
 {% endblock %}

@@ -8,6 +8,8 @@
 
 namespace helpers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 class Mail {
 
     public static function sendEmail($subject, $message, $from, $to) {
@@ -15,7 +17,7 @@ class Mail {
             return;
         }
 
-        $mail           = new \PHPMailer();
+        $mail           = new PHPMailer();
         $mail->From     = $from;
         $mail->FromName = 'Issues Mirror';
         $mail->AddReplyTo($from);

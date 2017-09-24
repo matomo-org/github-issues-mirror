@@ -8,44 +8,58 @@
 
 namespace helpers;
 
-class Twig {
+class Twig
+{
 
-    public static function setDateFormat(\Twig_Environment $environment)
-    {
-        $environment->getExtension('core')->setDateFormat('F jS Y');
+    public static function setDateFormat(\Twig_Environment $environment) {
+        $environment->getExtension("Twig_Extension_Core")->setDateFormat('F jS Y');
     }
 
-    public static function registerFilter(\Twig_Environment $environment)
-    {
+    public static function registerFilter(\Twig_Environment $environment) {
         $environment->addFilter(static::getMarkdownFilter());
-        $environment->addFilter(static::getLinkToPageFilter());
-        $environment->addFilter(static::getLinkToIssueFilter());
+        $environment->addFilter(static::getColorFilter());
+        $environment->addFunction(static::getPaginationFunction());
     }
 
-    private static function getMarkdownFilter()
-    {
+    private static function getMarkdownFilter() {
         return new \Twig_SimpleFilter('markdown', function ($text) {
             $parser = new Markdown();
-            return $parser->transform($text);
+            return $parser->text($text);
         });
     }
 
-    private static function getLinkToPageFilter()
-    {
-        return new \Twig_SimpleFilter('pageLink', function ($page) {
-            if (1 === (int) $page) {
-                return '/';
-            }
-
-            return '/?page=' . (int) $page;
-        }, array('is_safe' => array('all')));
+    private static function getColorFilter() {
+        return new \Twig_SimpleFilter(
+        /**
+         * modified from https://24ways.org/2010/calculating-color-contrast/
+         * @param $colorstring "#ffffff"
+         * @return string
+         */
+            'textcolor', function ($hexcolor) {
+            $r = hexdec(substr($hexcolor, 0, 2));
+            $g = hexdec(substr($hexcolor, 2, 2));
+            $b = hexdec(substr($hexcolor, 4, 2));
+            $yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+            return ($yiq >= 128) ? 'black' : 'white';
+        });
     }
 
-    private static function getLinkToIssueFilter()
-    {
-        return new \Twig_SimpleFilter('issueLink', function ($number) {
-
-            return '/' . (int) $number;
-        }, array('is_safe' => array('all')));
+    private static function getPaginationFunction() {
+        return new \Twig_Function('paginationFunction', function ($numPages, $page, $padding = 2) {
+            $pages = [1];
+            $i = 2;
+            while ($i <= $numPages) {
+                if ($i < ($page - $padding - 1)) {
+                    $pages[] = "d";
+                    $i = $page - $padding;
+                } elseif (($i > ($page + $padding)) && ($numPages > ($page + $padding + 2))) {
+                    $pages[] = "d";
+                    $i = $numPages;
+                }
+                $pages[] = $i;
+                $i++;
+            }
+            return $pages;
+        });
     }
 }
