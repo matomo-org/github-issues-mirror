@@ -45,7 +45,8 @@ class Twig
     }
 
     private static function getPaginationFunction() {
-        return new \Twig_Function('paginationFunction', function ($numPages, $page, $padding = 2) {
+        return new \Twig_Function('paginationFunction', function ($numPages, $page) {
+            $padding = PAGINATION_PADDING;
             $pages = [1];
             $i = 2;
             while ($i <= $numPages) {

@@ -44,3 +44,9 @@ define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'html', 'htm']);
  */
 define('PIWIK_URL', false);
 define('PIWIK_ID', false);
+
+/**
+ * Number of pages to show before and after the current page in the pagination. e.g. default (5) on page 37:
+ *  < 1 ... 32 33 34 35 36 *37** 38 39 40 40 42 ... 115 >
+ */
+define("PAGINATION_PADDING", 5);
