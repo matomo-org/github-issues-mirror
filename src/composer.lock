@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "14a0b7b897b18b882ea252fcf4b478bd",
+    "content-hash": "173d5101b6c7ef41ef8167acc05029fc",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -314,6 +314,50 @@
                 "parser"
             ],
             "time": "2017-05-14T14:47:48+00:00"
+        },
+        {
+            "name": "evert/sitemap-php",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evert/sitemap-php.git",
+                "reference": "be07a062943401067bf0ba62710ca733c838bc24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/evert/sitemap-php/zipball/be07a062943401067bf0ba62710ca733c838bc24",
+                "reference": "be07a062943401067bf0ba62710ca733c838bc24",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "SitemapPHP": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Osman Ungur",
+                    "email": "osmanungur@gmail.com"
+                },
+                {
+                    "name": "Evert Pot",
+                    "email": "evert@rooftopsolutions.nl"
+                }
+            ],
+            "description": "Lightweight library for generating Google sitemap XML files",
+            "homepage": "http://code.google.com/p/sabredav/",
+            "keywords": [
+                "Sitemap"
+            ],
+            "time": "2015-04-17T21:45:50+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",

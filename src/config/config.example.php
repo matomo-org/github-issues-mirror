@@ -50,3 +50,8 @@ define('PIWIK_ID', false);
  *  < 1 ... 32 33 34 35 36 *37** 38 39 40 40 42 ... 115 >
  */
 define("PAGINATION_PADDING", 5);
+
+/**
+ * used in sitemap (without trailing slash)
+ */
+define("BASE_DOMAIN", "https://issues.piwik.org");

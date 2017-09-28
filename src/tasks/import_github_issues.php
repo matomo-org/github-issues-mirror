@@ -29,6 +29,7 @@ $importer = new helpers\GithubImporter($client, $logger);
 try {
     $logger->info("starting import");
     $importer->import(GITHUB_ORGANIZATION, GITHUB_REPOSITORY, NUMBER_OF_ISSUES_PER_PAGE);
+    helpers\SitemapHelper::createSitemap($logger);
 } catch (Exception $e) {
     helpers\Mail::sendEmail('Import error', $e->getMessage(), PROJECT_EMAIL, PROJECT_EMAIL);
 
