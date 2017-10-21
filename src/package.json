@@ -1,5 +1,5 @@
 {
-  "name": "src",
+  "name": "github-issue-mirror",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,6 @@
     "compileCSS": "node-sass --recursive --output-style compressed --output public/css --source-map true --source-map-contents scss",
     "watchSCSS": "node-sass --watch --recursive --output-style compressed --output public/css --source-map true --source-map-contents scss"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Piwik Team",
+  "license": "GPL3"
 }
