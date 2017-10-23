@@ -12,7 +12,7 @@ require '../config/config.php';
 date_default_timezone_set('UTC');
 $config = [
     'settings' => [
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => DEBUG_ENABLED,
     ],
 ];
 
