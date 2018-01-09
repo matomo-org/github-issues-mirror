@@ -1,8 +1,8 @@
 <?php
 /**
- * Piwik - free/libre analytics platform
+ * Matomo - free/libre analytics platform
  *
- * @link http://piwik.org
+ * @link https://matomo.org/
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
@@ -40,9 +40,9 @@ class Markdown extends \Parsedown
 
 
     /**
-     * <a href="http://issues.piwik.org/attachments/1199/swelen_dateslider.swf">swelen_dateslider.swf</a>
+     * <a href="http://issues.matomo.org/attachments/1199/swelen_dateslider.swf">swelen_dateslider.swf</a>
      * to
-     * <a href="http://issues.piwik.org/">swelen_dateslider.swf</a>
+     * <a href="http://issues.matomo.org/">swelen_dateslider.swf</a>
      * @param $html
      * @return string html
      */
