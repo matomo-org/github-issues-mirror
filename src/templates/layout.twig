@@ -20,22 +20,22 @@
 <div class="container" style="margin-bottom: 20px;">
     <div class="row">
         <div class="col-md-6">
-            Powered by <a target="_blank" href="https://github.com/piwik/github-issues-mirror">GitHub Issue Mirror</a>
+            Powered by <a target="_blank" href="https://github.com/matomo-org/github-issues-mirror">GitHub Issue Mirror</a>
         </div>
     </div>
 </div>
 
-{% if piwikURL and piwikID %}
-    <!-- Piwik -->
+{% if matomoURL and matomoID %}
+    <!-- Matomo -->
     <script type="text/javascript">
         var _paq = _paq || [];
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function () {
-            var u = "{{ piwikURL }}";
+            var u = "{{ matomoURL }}";
             _paq.push(['setTrackerUrl', u + 'piwik.php']);
-            _paq.push(['setSiteId', '{{ piwikID }}']);
+            _paq.push(['setSiteId', '{{ matomoID }}']);
             var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
             g.type = 'text/javascript';
             g.async = true;
@@ -44,7 +44,7 @@
             s.parentNode.insertBefore(g, s);
         })();
     </script>
-    <!-- End Piwik Code -->
+    <!-- End Matomo Code -->
 {% endif %}
 
 </body>
