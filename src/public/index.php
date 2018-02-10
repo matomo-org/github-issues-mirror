@@ -1,8 +1,8 @@
 <?php
 /**
- * Piwik - free/libre analytics platform
+ * Matomo - free/libre analytics platform
  *
- * @link http://piwik.org
+ * @link https://matomo.org/
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
@@ -39,8 +39,8 @@ $container['view'] = function ($container) {
     $view->getEnvironment()->addGlobal('projectName', PROJECT_NAME);
     $view->getEnvironment()->addGlobal('githubOrganization', GITHUB_ORGANIZATION);
     $view->getEnvironment()->addGlobal('githubRepository', GITHUB_REPOSITORY);
-    $view->getEnvironment()->addGlobal('piwikURL', PIWIK_URL);
-    $view->getEnvironment()->addGlobal('piwikID', PIWIK_ID);
+    $view->getEnvironment()->addGlobal('matomoURL', MATOMO_URL);
+    $view->getEnvironment()->addGlobal('matomoID', MATOMO_ID);
 
     return $view;
 };

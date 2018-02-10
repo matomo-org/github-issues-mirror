@@ -1,20 +1,20 @@
 <?php
 /**
- * Piwik - free/libre analytics platform
+ * Matomo - free/libre analytics platform
  *
- * @link http://piwik.org
+ * @link https://matomo.org/
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
 /**
  * Will be displayed in the UI.
  */
-define('PROJECT_NAME', 'Piwik');
+define('PROJECT_NAME', 'Matomo');
 
 /**
  * Emails will be sent to this address in case anything goes wrong during the import.
  */
-define('PROJECT_EMAIL', 'developer@piwik.org');
+define('PROJECT_EMAIL', 'developer@matomo.org');
 
 /**
  * You can create a new application on the application settings page: https://github.com/settings/applications/new .
@@ -23,8 +23,8 @@ define('PROJECT_EMAIL', 'developer@piwik.org');
  */
 define('GITHUB_CLIENT_ID', '');
 define('GITHUB_CLIENT_SECRET', '');
-define('GITHUB_ORGANIZATION', 'piwik');
-define('GITHUB_REPOSITORY', 'piwik');
+define('GITHUB_ORGANIZATION', 'matomo-org');
+define('GITHUB_REPOSITORY', 'matomo');
 define('NUMBER_OF_ISSUES_PER_PAGE', 100);
 
 /**
@@ -35,15 +35,15 @@ define('DEBUG_ENABLED', false);
 
 /**
  * Set list of file extensions that should be disallowed in links
- * see https://github.com/piwik/github-issues-mirror/issues/5
+ * see https://github.com/matomo-org/github-issues-mirror/issues/5
  */
 define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'html', 'htm']);
 
 /**
  * If you want to enable piwik tracking enter the URL to your piwik instance and the ID of the website here
  */
-define('PIWIK_URL', false);
-define('PIWIK_ID', false);
+define('MATOMO_URL', false);
+define('MATOMO_ID', false);
 
 /**
  * Number of pages to show before and after the current page in the pagination. e.g. default (5) on page 37:
@@ -54,4 +54,4 @@ define("PAGINATION_PADDING", 5);
 /**
  * used in sitemap (without trailing slash)
  */
-define("BASE_DOMAIN", "https://issues.piwik.org");
+define("BASE_DOMAIN", "https://issues.matomo.org");
