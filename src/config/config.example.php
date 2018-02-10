@@ -55,3 +55,8 @@ define("PAGINATION_PADDING", 5);
  * used in sitemap (without trailing slash)
  */
 define("BASE_DOMAIN", "https://issues.matomo.org");
+
+/**
+ * URL to privacy policy (linked in footer)
+ */
+define("PRIVACY_POLICY_URL", "https://matomo.org/privacy-policy/");

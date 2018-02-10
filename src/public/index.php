@@ -41,6 +41,7 @@ $container['view'] = function ($container) {
     $view->getEnvironment()->addGlobal('githubRepository', GITHUB_REPOSITORY);
     $view->getEnvironment()->addGlobal('matomoURL', MATOMO_URL);
     $view->getEnvironment()->addGlobal('matomoID', MATOMO_ID);
+    $view->getEnvironment()->addGlobal('privacyPolicyURL', PRIVACY_POLICY_URL);
 
     return $view;
 };
