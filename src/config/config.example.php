@@ -24,7 +24,7 @@ define('PROJECT_EMAIL', 'developer@matomo.org');
 define('GITHUB_CLIENT_ID', '');
 define('GITHUB_CLIENT_SECRET', '');
 define('GITHUB_ORGANIZATION', 'matomo-org');
-define('GITHUB_REPOSITORY', 'piwik');
+define('GITHUB_REPOSITORY', 'matomo');
 define('NUMBER_OF_ISSUES_PER_PAGE', 100);
 
 /**
