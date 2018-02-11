@@ -8,4 +8,4 @@ src/vendor
 src/composer.phar
 src/config/config.php
 src/node_modules/
-src/public/css/style.*
+src/public/css/style.css.map
