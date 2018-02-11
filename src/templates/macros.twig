@@ -16,7 +16,7 @@
 
 {% macro pagination(num_pages, page) %}
     {% import _self as m %}
-    {% set pagearray = paginationFunction(num_pages, page,5) %}
+    {% set pagearray = paginationFunction(num_pages, page) %}
     <!-- License of svg icons - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License) -->
     <ul class="pagination">
         {% if page > 1 %}

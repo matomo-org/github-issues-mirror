@@ -1,12 +1,11 @@
 .idea
 src/data/issues/*/*.json
 src/data/pages/*.json
-src/tmp/templates_cache/*
-src/tmp/github_api_cache/*
+src/tmp/
 !src/tmp/templates_cache/.gitkeep
 !src/tmp/github_api_cache/.gitkeep
 src/vendor
 src/composer.phar
 src/config/config.php
 src/node_modules/
-src/public/css/style.*
+src/public/css/style.css.map

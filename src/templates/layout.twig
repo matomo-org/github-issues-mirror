@@ -22,6 +22,11 @@
         <div class="col-md-6">
             Powered by <a target="_blank" href="https://github.com/matomo-org/github-issues-mirror">GitHub Issue Mirror</a>
         </div>
+        {% if privacyPolicyURL %}
+        <div class="col-md-6 text-right">
+            <a href="{{privacyPolicyURL}}">Privacy Policy</a>
+        </div>
+        {% endif %}
     </div>
 </div>
 

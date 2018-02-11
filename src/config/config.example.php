@@ -44,3 +44,19 @@ define('FORBIDDEN_EXTENSIONS', ['swf', 'js', 'html', 'htm']);
  */
 define('MATOMO_URL', false);
 define('MATOMO_ID', false);
+
+/**
+ * Number of pages to show before and after the current page in the pagination. e.g. default (5) on page 37:
+ *  < 1 ... 32 33 34 35 36 *37** 38 39 40 40 42 ... 115 >
+ */
+define("PAGINATION_PADDING", 5);
+
+/**
+ * used in sitemap (without trailing slash)
+ */
+define("BASE_DOMAIN", "https://issues.matomo.org");
+
+/**
+ * URL to privacy policy (linked in footer)
+ */
+define("PRIVACY_POLICY_URL", "https://matomo.org/privacy-policy/");

@@ -25,6 +25,17 @@ class Issue {
         return json_decode($serialized, true);
     }
 
+    public static function getAllIssues() {
+        $Directory = new \RecursiveDirectoryIterator(dirname(__FILE__) . "/../data/issues/");
+        $Iterator = new \RecursiveIteratorIterator($Directory);
+        $issues = [];
+        foreach ($Iterator as $name => $object) {
+            $filename = $object->getFilename();
+            $issues[] = str_replace(".json", "", $filename);
+        }
+        return $issues;
+    }
+
     /**
      * Verify whether the given issue exists.
      * @param  int $issueNumber

@@ -25,6 +25,11 @@ class Page
         return json_decode($content, true);
     }
 
+    public static function getAllPages() {
+        $files = scandir(dirname(__FILE__) . "/../data/pages/");
+        return str_replace(".json", "", array_diff($files, array('..', '.', '.gitkeep')));
+    }
+
     /**
      * Verify whether the given page number exists.
      * @param  int $pageNumber
