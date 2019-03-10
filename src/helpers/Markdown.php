@@ -60,7 +60,7 @@ class Markdown extends \Parsedown
         $config->set('URI.AllowedSchemes', array('http' => true, 'https' => true, 'mailto' => true, 'ftp' => true));
         $config->set('HTML.TargetBlank', true);
         $config->set('HTML.Nofollow', true);
-        
+
         $purifier = new \HTMLPurifier($config);
 
         return $purifier->purify($html);
