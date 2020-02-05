@@ -56,8 +56,8 @@ class GithubImporter {
         $client = new Client();
         $client->addCache($pool);
 
-        if (!empty($clientId) && !empty($clientSecret)) {
-            $client->authenticate($clientId, $clientSecret, Client::AUTH_URL_CLIENT_ID);
+        if (!empty($clientId)) {
+            $client->authenticate($clientId, null, Client::AUTH_HTTP_TOKEN);
         }
 
         return $client;
