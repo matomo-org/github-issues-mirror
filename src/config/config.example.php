@@ -17,9 +17,9 @@ define('PROJECT_NAME', 'Matomo');
 define('PROJECT_EMAIL', 'developer@matomo.org');
 
 /**
- * You can create a new application on the application settings page: https://github.com/settings/applications/new .
- * After adding an application the client id and secret will be displayed.
- * If you do not provide a client id and secret you will be limited to 60 requests per hour instead of 5000.
+ * You can create a new personal access token here: https://github.com/settings/tokens/new .
+ * The token should be set as clientId. ClientSecret is no longer looked at.
+ * On the screen you don't need to give any permission. The default view public info permission is good enough.
  */
 define('GITHUB_CLIENT_ID', '');
 define('GITHUB_CLIENT_SECRET', '');
