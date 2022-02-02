@@ -47,7 +47,7 @@ class GithubImporter {
         }
     }
 
-    public static function buildClient($clientId, $clientSecret)
+    public static function buildClient($clientId)
     {
         $filesystemAdapter = new Local(realpath('../tmp/github_api_cache'));
         $filesystem = new Filesystem($filesystemAdapter);

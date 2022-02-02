@@ -23,7 +23,7 @@ if (DEBUG_ENABLED) {
 }
 
 $logger->info("authenticating");
-$client   = helpers\GithubImporter::buildClient(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET);
+$client   = helpers\GithubImporter::buildClient(GITHUB_CLIENT_ID);
 $importer = new helpers\GithubImporter($client, $logger);
 
 try {
