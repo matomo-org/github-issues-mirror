@@ -15,7 +15,7 @@ class Issue {
      * Upfront you should check whether the issue actually exists by calling exists().
      *
      * @param  int $issueNumber
-     * @return bool
+     * @return array
      */
     public function getIssue($issueNumber)
     {

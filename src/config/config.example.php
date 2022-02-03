@@ -22,7 +22,6 @@ define('PROJECT_EMAIL', 'developer@matomo.org');
  * On the screen you don't need to give any permission. The default view public info permission is good enough.
  */
 define('GITHUB_CLIENT_ID', '');
-define('GITHUB_CLIENT_SECRET', '');
 define('GITHUB_ORGANIZATION', 'matomo-org');
 define('GITHUB_REPOSITORY', 'matomo');
 define('NUMBER_OF_ISSUES_PER_PAGE', 100);

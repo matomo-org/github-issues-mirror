@@ -21,7 +21,7 @@
     <ul class="pagination">
         {% if page > 1 %}
             <li class="page-item">
-                <a rel="prev" href="{{ path_for('page', [], { 'page': page - 1 }) }}" class="page-link">
+                <a rel="prev" href="{{ url_for('page', [], { 'page': page - 1 }) }}" class="page-link">
                     <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"></path>
                     </svg>
@@ -47,7 +47,7 @@
         {% endfor %}
         <li class="page-item">
             {% if page < num_pages %}
-                <a rel="next" href="{{ path_for('page', [], { 'page': page + 1 }) }}" class="page-link">
+                <a rel="next" href="{{ url_for('page', [], { 'page': page + 1 }) }}" class="page-link">
                     <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"></path>
                     </svg>
@@ -65,7 +65,7 @@
 
 {% macro printpage(i,active) %}
     <li class="page-item {{ i == active ? "active" : "other" }}">
-        <a href="{{ path_for('page', [], { 'page': i }) }}"
+        <a href="{{ url_for('page', [], { 'page': i }) }}"
            class="page-link">{{ i }}</a>
     </li>
 {% endmacro %}

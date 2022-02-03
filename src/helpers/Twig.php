@@ -11,25 +11,25 @@ namespace helpers;
 class Twig
 {
 
-    public static function setDateFormat(\Twig_Environment $environment) {
-        $environment->getExtension("Twig_Extension_Core")->setDateFormat('F jS Y');
+    public static function setDateFormat(\Twig\Environment $environment) {
+        $environment->getExtension("Twig\Extension\CoreExtension")->setDateFormat('F jS Y');
     }
 
-    public static function registerFilter(\Twig_Environment $environment) {
+    public static function registerFilter(\Twig\Environment $environment) {
         $environment->addFilter(static::getMarkdownFilter());
         $environment->addFilter(static::getColorFilter());
         $environment->addFunction(static::getPaginationFunction());
     }
 
     private static function getMarkdownFilter() {
-        return new \Twig_SimpleFilter('markdown', function ($text) {
+        return new \Twig\TwigFilter('markdown', function ($text) {
             $parser = new Markdown();
             return $parser->text($text);
         });
     }
 
     private static function getColorFilter() {
-        return new \Twig_SimpleFilter(
+        return new \Twig\TwigFilter(
         /**
          * modified from https://24ways.org/2010/calculating-color-contrast/
          * @param $colorstring "#ffffff"
@@ -45,7 +45,7 @@ class Twig
     }
 
     private static function getPaginationFunction() {
-        return new \Twig_Function('paginationFunction', function ($numPages, $page) {
+        return new \Twig\TwigFunction('paginationFunction', function ($numPages, $page) {
             $padding = PAGINATION_PADDING;
             $pages = [1];
             $i = 2;
