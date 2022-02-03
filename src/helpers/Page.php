@@ -16,7 +16,7 @@ class Page
      * Upfront you should check whether the page actually exists by calling exists().
      *
      * @param  int $pageNumber
-     * @return bool
+     * @return array
      */
     public function getPage($pageNumber) {
         $path = $this->getPathToFile($pageNumber);

@@ -10,28 +10,19 @@ require '../vendor/autoload.php';
 require '../config/config.php';
 
 date_default_timezone_set('UTC');
-$config = [
-    'settings' => [
-        'displayErrorDetails' => DEBUG_ENABLED,
-    ],
-];
 
-$app = new \Slim\App($config);
-
-// Get container
-$container = $app->getContainer();
+$container = new \DI\Container();
+\Slim\Factory\AppFactory::setContainer($container);
 
 // Register component on container
-$container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig(realpath("../templates/"), [
+$container->set('view', function () {
+    $view = \Slim\Views\Twig::create(realpath("../templates/"), [
         'cache' => realpath('../tmp/templates_cache'),
         'debug' => DEBUG_ENABLED,
     ]);
 
     // Instantiate and add Slim specific extension
-    $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
-    $view->addExtension(new Slim\Views\TwigExtension($container['router'], $basePath));
-    $view->addExtension(new \Twig_Extension_Debug());
+    $view->addExtension(new \Twig\Extension\DebugExtension());
     $twig = $view->getEnvironment();
     helpers\Twig::setDateFormat($twig);
     helpers\Twig::registerFilter($twig);
@@ -44,7 +35,15 @@ $container['view'] = function ($container) {
     $view->getEnvironment()->addGlobal('privacyPolicyURL', PRIVACY_POLICY_URL);
 
     return $view;
-};
+});
+
+// Create App
+$app = \Slim\Factory\AppFactory::create();
+
+// Add Twig-View Middleware
+$app->add(\Slim\Views\TwigMiddleware::createFromContainer($app));
+
+$app->addErrorMiddleware(DEBUG_ENABLED, true, true);
 
 require '../routes/page.php';
 

@@ -9,6 +9,7 @@
 namespace helpers;
 
 use Cache\Adapter\Filesystem\FilesystemCachePool;
+use Github\AuthMethod;
 use Github\Client;
 use Github\ResultPager;
 use League\Flysystem\Adapter\Local;
@@ -57,7 +58,7 @@ class GithubImporter {
         $client->addCache($pool);
 
         if (!empty($clientId)) {
-            $client->authenticate($clientId, null, Client::AUTH_HTTP_TOKEN);
+            $client->authenticate($clientId, null, AuthMethod::ACCESS_TOKEN);
         }
 
         return $client;

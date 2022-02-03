@@ -3,11 +3,11 @@
 
 {% block head %}
     {% if currentPage > 1 %}
-        <link rel="prev" href="{{ path_for('page', [] , { 'page': previousPage }) }}"/>
+        <link rel="prev" href="{{ url_for('page', [] , { 'page': previousPage }) }}"/>
     {% endif %}
 
     {% if currentPage != numPages %}
-        <link rel="next" href="{{ path_for('page', [], { 'page': nextPage }) }}"/>
+        <link rel="next" href="{{ url_for('page', [], { 'page': nextPage }) }}"/>
     {% endif %}
 
     <link rel="canonical" href="https://github.com/matomo-org/matomo/issues/" />
@@ -38,7 +38,7 @@
         <div class="card-deck"><div class="row">
             {% for issue in issues %}
                 <div class="col-lg-3 col-md-4">
-                    <a href="{{ path_for('issue', { 'number': issue.number }) }}" class="card overviewCard">
+                    <a href="{{ url_for('issue', { 'number': issue.number }) }}" class="card overviewCard">
                         <div class="card-body">
                             <h4 class="card-title">{{ issue.title }}
                                 <small>#{{ issue.number }}</small>
