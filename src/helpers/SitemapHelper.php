@@ -15,7 +15,7 @@ use Slim\App;
 class SitemapHelper
 {
     public static function createSitemap(Logger $logger) {
-        $app = new App();
+        $app = \Slim\Factory\AppFactory::create();
         require "../routes/page.php";
         $sitemap = new Sitemap(BASE_DOMAIN);
         $sitemap->setPath('../tmp/');
